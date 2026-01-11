@@ -11,14 +11,17 @@ This project implements an agentic RAG system that uses a conversational AI agen
 - **Modular Architecture**: Clean separation of concerns with dedicated modules for LLM, embeddings, vector store, tools, and agent logic
 - **LangGraph Agent**: Intelligent agent that can decide when to retrieve documents and when to respond directly
 - **Vector Search**: Uses ChromaDB for efficient semantic search over document chunks
-- **Conversational Interface**: Interactive CLI for querying the system
+- **Streamlit Web UI**: Modern, interactive web interface for seamless user experience
+- **CLI Interface**: Alternative command-line interface for terminal users
 - **Document Processing**: Automatic document loading and chunking for optimal retrieval
+- **Chat History**: Persistent conversation history within sessions
 
 ## Project Structure
 
 ```
 Agentic_Rag/
-├── main.py                 # Entry point and orchestration
+├── app.py                 # Streamlit web interface
+├── main.py                # CLI entry point
 ├── config.py              # Configuration and environment variables
 ├── llm_module.py          # LLM initialization (Groq)
 ├── embeddings_module.py   # Embedding model setup
@@ -26,6 +29,8 @@ Agentic_Rag/
 ├── vectorstore_module.py  # ChromaDB vector store setup
 ├── tools_module.py        # Retriever tool creation
 ├── agent_module.py        # LangGraph agent logic
+├── requirements.txt       # Python dependencies
+├── .env                   # Environment variables (create this)
 ├── dataset/               # Source documents
 │   └── income-tax-act-2023-english (1) (1).md
 └── chroma_store/          # Vector database persistence
@@ -52,7 +57,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 3. Install dependencies:
 ```bash
-pip install langchain langchain-groq langchain-community langchain-chroma langgraph python-dotenv
+pip install -r requirements.txt
 ```
 
 4. Create a `.env` file in the root directory:
@@ -65,7 +70,22 @@ CHROMA_COLLECTION=legal_text
 
 ## Usage
 
-Run the agent:
+### Web Interface (Recommended)
+
+Run the Streamlit web application:
+```bash
+streamlit run app.py
+```
+
+The application will open in your browser at `http://localhost:8501`. Features include:
+- 💬 Interactive chat interface
+- 📝 Persistent chat history
+- ⚙️ Configuration status display
+- 🎨 Modern, responsive UI
+
+### Command Line Interface
+
+Alternatively, run the CLI version:
 ```bash
 python main.py
 ```
